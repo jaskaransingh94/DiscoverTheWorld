@@ -1,0 +1,101 @@
+<span *ngIf="flag">
+  <app-single-country-header [flag]="flag" [country]="country_shared"></app-single-country-header>
+</span>
+<div class="container-fluid">
+  <ng4-loading-spinner> </ng4-loading-spinner>
+  <div class="card-columns justify-content-center" style="text-align:center" *ngIf="singleCountry1!=undefined && singleCountry1.size>0">
+    <!-- <div class="card-columns"> -->
+
+    <div class="card" style="margin: 2vh" style="border-width: 4px; border-radius: 100px ;background: url('assets/images/card_back.gif')">
+      <div *ngFor="let country of getKeys(singleCountry1)">
+        <div class="card-body text-primary" style="font-size: 3vh;color: black !important">
+          <p class="card-text" style="font-weight: 500">{{country | uppercase}} : </p>
+          <p style="font-weight: 400" class="card-text">{{getValues(country)}}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin: 2vh" style="border-width: 4px; border-radius: 100px;background: url('assets/images/card_back.gif')">
+      <div *ngFor="let country of getKeys(singleCountry5)">
+        <div class="card-body text-primary" style="font-size: 3vh;color: black !important">
+          <span *ngIf="country == 'altSpellings' || country == 'translations'" style="font-weight: 500">{{country | uppercase}} :
+            <span *ngFor="let name of getValues(country)">
+              <a *ngIf="name.includes('name');else templateName" [innerHtml]="name"></a>
+              <ng-template #templateName>
+                <span style="font-weight: 400" class="card-text" [innerHtml]="name"></span>
+              </ng-template>
+            </span>
+          </span>
+          <span *ngIf="country == 'demonym' || country == 'nativeName'" style="font-weight: 500">{{country | uppercase}} :
+            <a [innerHtml]="getValues(country)"></a>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="w-100"></div>
+
+    <div class="card" style="margin: 2vh" style="border-width: 4px; border-radius: 100px;background: url('assets/images/card_back.gif')">
+      <div *ngFor="let country of getKeys(singleCountry4)">
+        <div class="card-body text-primary" style="font-size: 3vh;color: black !important; padding-top:2vh">
+          <p class="card-text" style="font-weight: 500">{{country | uppercase}} : </p>
+          <p style="font-weight: 400" class="card-text">{{getValues(country)}}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin: 2vh" style="border-width: 4px; border-radius: 100px;background: url('assets/images/card_back.gif')">
+      <div *ngFor="let country of getKeys(singleCountry2)">
+        <div class="card-body text-primary" style="font-size: 3vh;color: black !important;">
+          <p class="card-text" style="font-weight: 500">{{country | uppercase}} : </p>
+          <p style="font-weight: 400" class="card-text">{{getValues(country)}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="w-100"></div>
+
+    <div class="card" style="margin: 2vh" style="border-width: 4px; border-radius: 100px;background: url('assets/images/card_back.gif')">
+      <div *ngFor="let country of getKeys(singleCountry3)">
+        <div class="card-body text-primary" style="font-size: 3vh;color: black !important">
+          <p class="card-text" style="font-weight: 500">{{country | uppercase}} : </p>
+          <p style="font-weight: 400" class="card-text">{{getValues(country)}}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin: 2vh" style="border-width: 4px; border-radius: 100px;background: url('assets/images/card_back.gif')">
+      <div *ngFor="let country of getKeys(singleCountry6)">
+        <div class="card-body text-primary" style="font-size: 3vh;color: black !important">
+          <span *ngIf="country === 'languages'" style="font-weight: 500">{{country | uppercase}} :
+            <span *ngFor="let name of getValues(country)">
+              <a style="font-weight: 500;cursor: pointer;color: steelblue;text-decoration: underline" *ngIf="name.includes('name');else templateName"
+                [innerHtml]="name" (click)="navigate('lang',getValues(country)[0])"></a>
+
+              <ng-template #templateName>
+                <span style="font-weight: 400" class="card-text" [innerHtml]="name"></span>
+              </ng-template>
+            </span>
+          </span>
+          <span *ngIf="country === 'currencies'" style="font-weight: 500">{{country | uppercase}} :
+            <span *ngFor="let name of getValues(country)">
+              <a style="font-weight: 500;cursor: pointer;color: steelblue;text-decoration: underline" *ngIf="name.includes('name');else templateName"
+                [innerHtml]="name" (click)="navigate('currency',getValues(country)[0])"></a>
+
+              <ng-template #templateName>
+                <span style="font-weight: 400" class="card-text" [innerHtml]="name"></span>
+              </ng-template>
+            </span>
+          </span>
+          <span *ngIf="country === 'regionalBlocs' || country === 'borders'" style="font-weight: 500">{{country | uppercase}} :
+            <span *ngFor="let name of getValues(country)">
+              <a style="font-weight: 400" [innerHtml]="name"></a>
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <a class="btn btn-outline-danger" style="color: white;float: right;margin: 2vh;border-color: white;font-weight: 500;background-color: steelblue"
+      (click)="goBack()">Go Back</a>
+
+    <!-- </div> -->
+  </div>
+</div>

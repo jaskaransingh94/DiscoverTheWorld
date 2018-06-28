@@ -1,0 +1,47 @@
+  .btn:hover {
+    background-color:rgb(15, 59, 95) !important; 
+    font-weight: 500
+  }
+  #startBtn {
+    position: relative;
+    transition: all ease 0.5s;
+  }
+  #startBtn:active {
+    box-shadow: 0 3px 0 steelblue;
+    top: 3px;
+  }
+  .card:hover{
+	transform: scale(1.1);
+	box-shadow: 6px 6px 6px 2px rgb(196, 200, 211);
+	z-index: 9;
+	cursor: pointer;
+}
+
+.my-pagination /deep/ .ngx-pagination a {
+  font-weight: 400;
+  color: white;
+}
+
+.my-pagination /deep/ .ngx-pagination a:hover {
+  font-weight: 700;
+  color: steelblue;
+  background-color: transparent;
+}
+
+.btn-outline-light {
+  color: white;
+}
+
+button:focus{
+  color: white !important;
+}
+
+.page{
+  text-align: center;
+  margin-bottom: 2vh;
+  padding-bottom: 3vh
+}
+
+  div.fade a:hover { 
+    color: steelblue !important; 
+}

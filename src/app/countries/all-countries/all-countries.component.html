@@ -1,0 +1,56 @@
+<span *ngIf="region">
+  <app-all-country-header [region]="region"></app-all-country-header>
+</span>
+<div class="container-fluid" style="background: url('assets/images/wallpaper.jpg');">
+  <div class="input-group" style="padding: 8vh">
+    <input type="text" [(ngModel)]="searchText" placeholder="Search using Country Name Or Capital" class="form-control" aria-label="Text input with dropdown button">
+    <div class="input-group-append">
+      <button class="btn btn-outline-light dropdown-toggle" type="button" data-toggle="dropdown" style="background-color: black"
+        aria-haspopup="true" aria-expanded="false">{{selectedValue}}</button>
+      <div class="dropdown-menu" style="cursor: pointer;">
+        <a class="dropdown-item" (click)="selection('Name')">Name</a>
+        <a class="dropdown-item" (click)="selection('Capital')">Capital</a>
+      </div>
+    </div>
+  </div>
+  <ng4-loading-spinner> </ng4-loading-spinner>
+  <div class="row" style="text-align:center" *ngIf="allCountries!=undefined && allCountries.length>0">
+    <div *ngFor="let country of allCountries | filter: [searchText,selectedValue] | paginate: { itemsPerPage: 10, currentPage: p }"
+      class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+      <div class="card" style="margin: 4vh;">
+        <img class="card-img-top" src={{country.flag}} alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title" style="color: steelblue">Name : {{country.name | uppercase}}</h5>
+          <h5 class="card-title" style="color: steelblue">Capital : {{country.capital | uppercase}}</h5>
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="tab" href="#{{country.name}}2">Currency</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#{{country.name}}1">Languages</a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane fade" id="{{country.name}}1" style="margin-top:3vh">
+              <a *ngFor="let language of country.languages" style="font-weight: 500;cursor: pointer;color: steelblue;text-decoration: underline"
+                class="card-link" (click)="currOrlan('lang',language.iso639_1,country.region)">{{language.name}}</a>
+            </div>
+            <div class="tab-pane fade show active" id="{{country.name}}2" style="margin-top:3vh">
+              <a style="font-weight: 500;cursor: pointer;color: steelblue;text-decoration: underline" class="card-link" (click)="currOrlan('currency',country.currencies[0].code,country.region)">{{country.currencies[0].name}}</a>
+            </div>
+          </div>
+        </div>
+        <a [routerLink]="['/singleountryview',country.name]" style="margin-top: 2vh;" class="btn btn-outline-secondary" id="startBtn"
+          style="background-color: steelblue;color: white;font-weight: 500">Explore</a>
+      </div>
+    </div>
+  </div>
+  <a class="btn btn-outline-danger" style="color: white;float: right;margin-right: 0;border-color: white;font-weight: 500;background-color: steelblue"
+    (click)="goBack()">Go Back</a>
+
+  <div class="page">
+    <pagination-controls class="my-pagination" (pageChange)="p = $event" maxSize="9" previousLabel="Previous" nextLabel="Next">
+    </pagination-controls>
+  </div>
+
+</div>

@@ -1,0 +1,18 @@
+.btn:hover {
+    background-color:rgb(15, 59, 95) !important; 
+    font-weight: 500
+  }
+  #startBtn {
+    position: relative;
+    transition: all ease 0.5s;
+  }
+  #startBtn:active {
+    box-shadow: 0 3px 0 steelblue;
+    top: 3px;
+  }
+
+  div.fade a:hover { 
+    color: steelblue !important; 
+}
+
+
